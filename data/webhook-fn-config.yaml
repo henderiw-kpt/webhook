@@ -1,0 +1,17 @@
+apiVersion: fn.kpt.dev/v1alpha1
+kind: Webhook
+metadata:
+  name: webhook-fn-config
+  annotations:
+    config.kubernetes.io/local-config: "true"
+operation: add
+webhook:
+  name: admin
+  namespace: ndd-system
+service:
+  port: 443
+  targetPort: 9443
+certificate:
+  issuerRef: selfsigned-issuer
+container:
+  name: manager
